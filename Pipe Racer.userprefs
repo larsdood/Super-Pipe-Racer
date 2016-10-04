@@ -1,0 +1,50 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj" RefactoringSettings.EnableRefactorings="True">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuScripts\MainMenuHandler.cs">
+    <Files>
+      <File FileName="Assets\Scripts\UnlockHandler.cs" Line="444" Column="22" />
+      <File FileName="Assets\Scripts\LanguageHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuScripts\MainMenuHandler.cs" Line="42" Column="44" />
+      <File FileName="Assets\Scripts\MenuScripts\CreditsMenuHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\AudioHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ItemPlacerScripts\RandomPlacer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PreGameHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuScripts\OptionsHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\HUD.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Object Types\Pipe.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\CreditsHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\PlayServicesResolver\Editor\PlayServicesResolver.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enums\GameMode.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enums\UnlockCriteriaType.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Object Types\ShipObject.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ColorHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Language.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enums\RecordReplaySettingType.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Enums\PlayerControlType.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\GloVar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Object Types\ShipModel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\FontSize.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuScripts\SelectShipMenuHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UnlockableObject.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\UnlockableObjectType.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Avatar.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PipeSystem.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\SFXHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ReplayHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Plugins\Android\everyplay\AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuScripts\GameMenuHandler.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ItemPlacerScripts\DoubleSpiralPlacer.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\PipeItemGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ItemPlacerScripts\HyperPlacer.cs" Line="1" Column="1" />
+      <File FileName="Assets\GoogleConstants.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Object Types\ColorGroup.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\StatsGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ItemPlacerScripts\Spiral4WayPlacer.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
