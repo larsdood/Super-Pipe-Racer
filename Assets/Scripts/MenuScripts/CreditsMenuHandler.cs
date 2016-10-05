@@ -70,6 +70,8 @@ public class CreditsMenuHandler : MonoBehaviour, IStoreListener {
 	bool IsInitialized(){
 		#if UNITY_ANDROID
 		return m_StoreController != null && m_StoreExtensionProvider != null;	
+		#elif UNITY_IOS
+		return false;
 		#endif
 	}
 	public void PurchaseGameClick(){
@@ -143,6 +145,7 @@ public class CreditsMenuHandler : MonoBehaviour, IStoreListener {
 	public void OnInitializeFailed(InitializationFailureReason error){
 		Debug.Log ("OnInitializeFailed Reason: " + error);
 	}
+
 	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args){
 		#if UNITY_ANDROID
 		if (String.Equals (args.purchasedProduct.definition.id, GloVar.kProductIDUnlockFullGame, StringComparison.Ordinal)){
@@ -153,6 +156,8 @@ public class CreditsMenuHandler : MonoBehaviour, IStoreListener {
 		else{
 			Debug.Log (string.Format ("ProcessPurchase: FAIL. Unrecognized product: '{0}", args.purchasedProduct.definition.id));
 		}
+		return PurchaseProcessingResult.Complete;
+		#elif UNITY_IOS
 		return PurchaseProcessingResult.Complete;
 		#endif
 	}
