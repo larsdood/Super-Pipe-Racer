@@ -44,7 +44,6 @@ public static class GoogleConstants
         public const string achievement_unlock_chocomint_fighter = "CgkIyOLKsZgIEAIQDQ"; // <GPGSID>
         public const string leaderboard_normal_mode_highscore = "CgkIyOLKsZgIEAIQBg"; // <GPGSID>
         public const string achievement_hyperspeed_mode_master = "CgkIyOLKsZgIEAIQHQ"; // <GPGSID>
-        public const string leaderboard_three_strikes_leaderboard = "CgkIyOLKsZgIEAIQCg"; // <GPGSID>
         public const string achievement_three_strikes_mode_master = "CgkIyOLKsZgIEAIQGg"; // <GPGSID>
         public const string leaderboard_hyperspeed_mode_highscore = "CgkIyOLKsZgIEAIQCQ"; // <GPGSID>
         public const string achievement_spaceship_designer = "CgkIyOLKsZgIEAIQHg"; // <GPGSID>
@@ -53,6 +52,7 @@ public static class GoogleConstants
         public const string achievement_unlock_radical_bomber = "CgkIyOLKsZgIEAIQDw"; // <GPGSID>
         public const string achievement_play_1000_games = "CgkIyOLKsZgIEAIQGA"; // <GPGSID>
         public const string achievement_unlock_slalom_mode = "CgkIyOLKsZgIEAIQDA"; // <GPGSID>
+        public const string leaderboard_three_strikes_mode_highscore = "CgkIyOLKsZgIEAIQCg"; // <GPGSID>
 
 }
 

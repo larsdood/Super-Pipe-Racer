@@ -23,8 +23,8 @@ public class MainMenuHandler : MonoBehaviour, IStoreListener{
 	private float horizontalInput;
 	private bool readyToReadHorizontalInput = true;
 	private bool gpgsActivated = false;
-	public string androidGameID;
-	public string iphoneGameID;
+	public string androidGameAdsID;
+	public string iphoneGameAdsID;
 	private static IStoreController m_StoreController;
 	private static IExtensionProvider m_StoreExtensionProvider;
 
@@ -37,7 +37,7 @@ public class MainMenuHandler : MonoBehaviour, IStoreListener{
 	public void OnPurchaseFailed(Product i, PurchaseFailureReason p){}
 	public void OnInitialized(IStoreController controller, IExtensionProvider extensions){
 		Debug.Log ("OnInitialized: PASS");
-
+		#if UNITY_ANDROID
 		Product product = controller.products.WithID(GloVar.kProductIDUnlockFullGame);
 		if (product != null && product.hasReceipt)
 		{
@@ -47,6 +47,7 @@ public class MainMenuHandler : MonoBehaviour, IStoreListener{
 			PlayerPrefs.SetInt (GloVar.GamePurchasedPrefName, 0);
 		}
 		SetLabels();
+		#endif
 	}
 
 	void Start(){		
@@ -58,6 +59,7 @@ public class MainMenuHandler : MonoBehaviour, IStoreListener{
 		audioHandler.PlayMainMenu ();
 
 		currentSelection = PlayerPrefs.GetInt (GloVar.GameModePrefName);
+		#if UNITY_ANDROID
 		if (m_StoreController == null){
 			if (m_StoreController == null || m_StoreExtensionProvider == null){
 				var builder = ConfigurationBuilder.Instance (StandardPurchasingModule.Instance ());
@@ -65,7 +67,10 @@ public class MainMenuHandler : MonoBehaviour, IStoreListener{
 				UnityPurchasing.Initialize (this, builder);
 			}
 		}
-		
+		#elif UNITY_IOS
+		PlayerPrefs.SetInt (GloVar.GamePurchasedPrefName, 1);
+		#endif
+
 		if (PlayerPrefs.GetInt(GloVar.AutoSignInPrefName, 1) == 1){
 			if (PlayGamesPlatform.Instance.IsAuthenticated () == false){
 				if (!Application.isEditor){
@@ -87,14 +92,16 @@ public class MainMenuHandler : MonoBehaviour, IStoreListener{
 				});
 			}
 		}
+		#if UNITY_ANDROID
 		if (Advertisement.isSupported){
 			if (Application.platform == RuntimePlatform.Android){
-				Advertisement.Initialize (androidGameID);
+				Advertisement.Initialize (androidGameAdsID);
 			}
 			else if (Application.platform == RuntimePlatform.IPhonePlayer){
-				Advertisement.Initialize (iphoneGameID);
+				Advertisement.Initialize (iphoneGameAdsID);
 			}
 		}
+		#endif
 
 
 		SetLabels ();

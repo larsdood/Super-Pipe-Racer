@@ -22,9 +22,11 @@ public class CreditsMenuHandler : MonoBehaviour, IStoreListener {
 	void Start () {
 		
 		languageHandler = (LanguageHandler)GameObject.FindGameObjectWithTag ("LanguageHandler").GetComponent (typeof(LanguageHandler));
+		#if UNITY_ANDROID
 		if (m_StoreController == null){
 			InitializePurchasing ();
 		}
+		#endif
 		audioHandler = (AudioHandler)GameObject.FindGameObjectWithTag ("MusicPlayer").GetComponent (typeof(AudioHandler));
 		audioHandler.PlayMainMenu ();
 		/*
@@ -44,25 +46,31 @@ public class CreditsMenuHandler : MonoBehaviour, IStoreListener {
 	void SetLabels(){
 		languageHandler.SetTextSettings (mainMenuText, "mainmenu", FontSize.Large);
 		languageHandler.SetTextSettings (creditsTitleText, "credits", FontSize.Large);
-		creditsTitleText.text += ": " + PlayerPrefs.GetInt (GloVar.CreditsPrefName, 30);
+		creditsTitleText.text += ": " + PlayerPrefs.GetInt (GloVar.CreditsPrefName, GloVar.InitialCredits);
 		languageHandler.SetTextSettings (buyGameButtonText, "buygame", FontSize.ExtraLarge);
 		languageHandler.SetTextSettings (buyGameInfoText, "buygameinfo", FontSize.Medium);
 		languageHandler.SetTextSettings (watchVideoInfoText, "watchvideoinfo", FontSize.Medium);
+		#if UNITY_ANDROID
 		if (IsInitialized () && priceText.text.Equals ("")){
 			languageHandler.SetTextSettings (priceText, "", FontSize.Medium);
 			priceText.text = m_StoreController.products.WithID(GloVar.kProductIDUnlockFullGame).metadata.localizedPriceString;
 		}
+		#endif
 	}
 	void InitializePurchasing(){
+		#if UNITY_ANDROID
 		if(IsInitialized()){
 			return;
 		}
 		var builder = ConfigurationBuilder.Instance (StandardPurchasingModule.Instance ());
 		builder.AddProduct (GloVar.kProductIDUnlockFullGame, ProductType.NonConsumable);
 		UnityPurchasing.Initialize (this, builder);
+		#endif
 	}
 	bool IsInitialized(){
+		#if UNITY_ANDROID
 		return m_StoreController != null && m_StoreExtensionProvider != null;	
+		#endif
 	}
 	public void PurchaseGameClick(){
 		//PlayerPrefs.SetInt (GloVar.GamePurchasedPrefName, 1);
@@ -70,6 +78,7 @@ public class CreditsMenuHandler : MonoBehaviour, IStoreListener {
 		BuyProductID (GloVar.kProductIDUnlockFullGame);
 	}
 	void BuyProductID(string productId){
+		#if UNITY_ANDROID
 		if (IsInitialized ()){
 			Product product = m_StoreController.products.WithID (productId);
 
@@ -91,9 +100,11 @@ public class CreditsMenuHandler : MonoBehaviour, IStoreListener {
 		else{
 			Debug.Log ("BuyProductID: FAIL. Not initialized.");
 		}
+		#endif
 	}
 
 	public void RestorePurchases(){
+		#if UNITY_ANDROID
 		if (!IsInitialized ()){
 			Debug.Log ("Restore purchases: FAIL. Not initialized.");
 			return;
@@ -108,9 +119,11 @@ public class CreditsMenuHandler : MonoBehaviour, IStoreListener {
 		else{
 			Debug.Log ("No restore necessary (not Apple platform).");
 		}
+		#endif
 	}
 
 	public void OnInitialized(IStoreController controller, IExtensionProvider extensions){
+		#if UNITY_ANDROID
 		Debug.Log ("OnInitialized: PASS");
 		m_StoreController = controller;
 		m_StoreExtensionProvider = extensions;
@@ -125,11 +138,13 @@ public class CreditsMenuHandler : MonoBehaviour, IStoreListener {
 		}
 		languageHandler.SetTextSettings (priceText, "", FontSize.Medium);
 		priceText.text = product.metadata.localizedPriceString;
+		#endif
 	}
 	public void OnInitializeFailed(InitializationFailureReason error){
 		Debug.Log ("OnInitializeFailed Reason: " + error);
 	}
 	public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args){
+		#if UNITY_ANDROID
 		if (String.Equals (args.purchasedProduct.definition.id, GloVar.kProductIDUnlockFullGame, StringComparison.Ordinal)){
 			Debug.Log (string.Format ("ProcessPurchase: PASS. Product: '{0}'", args.purchasedProduct.definition.id));
 			PlayerPrefs.SetInt (GloVar.GamePurchasedPrefName, 1);
@@ -139,35 +154,43 @@ public class CreditsMenuHandler : MonoBehaviour, IStoreListener {
 			Debug.Log (string.Format ("ProcessPurchase: FAIL. Unrecognized product: '{0}", args.purchasedProduct.definition.id));
 		}
 		return PurchaseProcessingResult.Complete;
+		#endif
 	}
 	public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason){
+		#if UNITY_ANDROID
 		Debug.Log (string.Format ("OnPurchaseFailed: FAIL. Product: '{0}', PurchaseFailedReason: '{1}'", product.definition.storeSpecificId, failureReason));
+		#endif
 	}
 
 	// Update is called once per frame
 	void Update () {
+		#if UNITY_ANDROID
 		if (Input.GetKeyDown(KeyCode.Escape)) { SceneManager.LoadScene(GloVar.MainMenuSceneName);; }
 		videoReady = Advertisement.IsReady ();
 		WatchButtonManipulation ();
 		SetLabels ();
+		#endif
 	}
 
 	void WatchButtonManipulation(){
+		#if UNITY_ANDROID
 		if (videoReady){
 			languageHandler.SetTextSettings (watchVideoButtonText, "watchvideo", FontSize.Large);
 		}
 		else{
 			languageHandler.SetTextSettings (watchVideoButtonText, "loadingvideo", FontSize.Large); 
 		}
+		#endif
 	}
 
 	public void WatchButtonClicked(){
+		#if UNITY_ANDROID
 		if (videoReady){
 			ShowOptions options = new ShowOptions();
 			options.resultCallback = HandleShowResult;
 			Advertisement.Show ("rewardedVideo", options);
 		}
-
+		#endif
 	}
 
 	private void HandleShowResult(ShowResult result){
